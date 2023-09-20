@@ -5,12 +5,13 @@ import {FcGlobe} from "react-icons/fc";
 import {useCallback, useState} from "react";
 import {
   FieldValues,
-    SubmitHandler,
-    useForm
+  SubmitHandler,
+  useForm
 } from 'react-hook-form';
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "@/app/components/modals/Modal";
 import Heading from "@/app/components/Heading";
+import Input from "@/app/components/inputs/Input";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -45,25 +46,51 @@ const RegisterModal = () => {
         })
   }
 
+  // @ts-ignore
   const bodyContent = (
       <div className="flex flex-col gap-4">
         <Heading
             title="Welcome to Airbnb"
             subtitle="Create an account!"
         />
+        <Input
+            id="email"
+            label="Email"
+            disable={isLoading}
+            register={register}
+            errors={errors}
+            required
+        />
+        <Input
+            id="name"
+            label="Name"
+            disable={isLoading}
+            register={register}
+            errors={errors}
+            required
+        />
+        <Input
+            id="password"
+            label="Password"
+            type="password"
+            disable={isLoading}
+            register={register}
+            errors={errors}
+            required
+        />
       </div>
   )
 
   return(
       <Modal
-        disable={isLoading}
-        isOpen={registerModal.isOpen}
-        title="Register"
-        actionLabel="Continue"
-        onClose={registerModal.onClose}
-        onSubmit={handleSubmit(onSubmit)}
-        body={bodyContent}
-   />
+          disable={isLoading}
+          isOpen={registerModal.isOpen}
+          title="Register"
+          actionLabel="Continue"
+          onClose={registerModal.onClose}
+          onSubmit={handleSubmit(onSubmit)}
+          body={bodyContent}
+      />
   );
 }
 
