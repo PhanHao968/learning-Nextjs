@@ -1,7 +1,7 @@
 'use client';
 import axios from 'axios';
 import {AiFillGithub} from "react-icons/ai";
-import {FcGlobe} from "react-icons/fc";
+import {FcGoogle} from "react-icons/fc";
 import {useCallback, useState} from "react";
 import {
   FieldValues,
@@ -12,6 +12,8 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "@/app/components/modals/Modal";
 import Heading from "@/app/components/Heading";
 import Input from "@/app/components/inputs/Input";
+import toast from "react-hot-toast";
+import Button from "@/app/components/Button";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -22,24 +24,24 @@ const RegisterModal = () => {
     handleSubmit,
     formState:{
       errors,
-    }
+    },
   } = useForm<FieldValues>({
     defaultValues:{
       name: '',
       email: '',
       password: ''
-    }
+    },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) =>{
     setIsLoading(true);
 
-    axios.post('api/register', data)
+    axios.post('/api/register', data)
         .then(()=>{
           registerModal.onClose();
         })
-        .catch((errors)=>{
-          console.log(errors);
+        .catch((error)=>{
+          toast.error('something wrong');
         })
         .finally(() => {
           setIsLoading(false)
@@ -71,12 +73,24 @@ const RegisterModal = () => {
         />
         <Input
             id="password"
-            label="Password"
             type="password"
+            label="Password"
             disable={isLoading}
             register={register}
             errors={errors}
             required
+        />
+      </div>
+  )
+
+  const footerContent=(
+      <div className="flex flex-col gap-4 ">
+        <hr/>
+        <Button
+            outline
+            label="Continue With Google"
+            icon={FcGoogle}
+            onClick={()=>{}}
         />
       </div>
   )
@@ -90,6 +104,7 @@ const RegisterModal = () => {
           onClose={registerModal.onClose}
           onSubmit={handleSubmit(onSubmit)}
           body={bodyContent}
+          footer={footerContent}
       />
   );
 }

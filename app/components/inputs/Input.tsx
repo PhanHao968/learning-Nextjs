@@ -2,7 +2,7 @@
 
 
 import {
-    FieldError,
+    FieldErrors,
     FieldValues,
     UseFormRegister
 } from "react-hook-form";
@@ -17,7 +17,7 @@ interface InputProps {
     formatPrice?: boolean;
     register: UseFormRegister<FieldValues>,
     required?: boolean;
-    errors: FieldError;
+    errors: FieldErrors
 }
 const Input: React.FC<InputProps> = ({
     id,
@@ -45,8 +45,8 @@ const Input: React.FC<InputProps> = ({
           <input
               id={id}
               disabled={disable}
-              {...register(id, {required})}
-              placeholder=""
+              { ... register(id, { required })}
+              placeholder=" "
               type={type}
               className={`
                 peer
