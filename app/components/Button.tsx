@@ -17,11 +17,13 @@ const Button: React.FC<ButtonPros> = ({
     onClick,
     disable,
     outline,
-    icon
+    icon: Icon
 }) => {
 
     return(
       <button
+        onClick={onClick}
+        disabled={disable}
         className={`
             relative
             disabled:opacity-70
@@ -39,6 +41,17 @@ const Button: React.FC<ButtonPros> = ({
             ${small ? 'border-[1px]' : 'border-2'}
         `}
       >
+          {Icon && (
+             <Icon
+                 size={24}
+                 className="
+                    absolute
+                    left-4
+                    top-3
+
+                 "
+             />
+          )}
           {label}
       </button>
   );
