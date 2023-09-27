@@ -33,20 +33,21 @@ const RegisterModal = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) =>{
-    setIsLoading(true);
+    const onSubmit: SubmitHandler<FieldValues> = (data) =>{
+        setIsLoading(true);
 
-    axios.post('/api/register', data)
-        .then(()=>{
-          registerModal.onClose();
-        })
-        .catch((error)=>{
-          toast.error('something wrong');
-        })
-        .finally(() => {
-          setIsLoading(false)
-        })
-  }
+        axios.post('/api/register', data)
+            .then(()=>{
+                toast.success('Registered!');
+                registerModal.onClose();
+            })
+            .catch((error)=>{
+                toast.error('something wrong');
+            })
+            .finally(() => {
+                setIsLoading(false)
+            })
+    }
 
   // @ts-ignore
   const bodyContent = (
