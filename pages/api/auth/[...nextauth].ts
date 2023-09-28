@@ -49,6 +49,7 @@ export const authOptions: AuthOptions = {
         }
 
         return user;
+
       }
     })
   ],
