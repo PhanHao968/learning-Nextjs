@@ -41,13 +41,13 @@ const LoginModal = () => {
         setIsLoading(true);
 
         signIn('credentials',{
-            ... data,
-            redirect: false,
+            ...data,
+            redirect: false
         })
         .then((callback) => {
             setIsLoading(false);
             if (callback?.ok){
-                toast.success('Logged in')
+                toast.success('Logged in');
                 router.refresh();
                 loginModal.onClose();
             }
