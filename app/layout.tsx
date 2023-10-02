@@ -8,6 +8,7 @@ import RegisterModal from "@/app/components/modals/RegisterModal";
 import ToasterProvider from "@/app/providers/ToasterProvider";
 import LoginModal from "@/app/components/modals/LoginModal";
 import getCurrentUser from "@/app/actions/GetCurrentUser";
+import UserMenu from "@/app/components/navbar/UserMenu";
 
 const inter = Inter({ subsets: ['latin'] })
 
